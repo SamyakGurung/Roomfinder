@@ -11,8 +11,7 @@
             color: #333;
         }
         header {
-            background-color:rgb(8, 113, 218);
-            color: white;
+            color: blue;
             padding: 20px 0;
             text-align: center;
         }
@@ -24,7 +23,7 @@
         
         }
         h1, h2 {
-            color: #2c3e50;
+            color:rgb(1, 8, 15);
              /* For Laravel public/images/room.jpg */
         
         }
@@ -35,13 +34,13 @@
         
         }
         .highlight {
-            color: #3498db;
+            color:rgb(2, 17, 27);
             font-weight: bold;
              /* For Laravel public/images/room.jpg */
         
         }
         footer {
-            background-color: #2c3e50;
+            background-color:black;
             color: white;
             text-align: center;
             padding: 10px 0;
@@ -49,7 +48,7 @@
         }
     </style>
 
-    <style>
+    <!-- <style>
       
         header {
            
@@ -131,4 +130,4 @@
             background-color: #2980b9;
         }
     </style>
-</head>
+</head> -->

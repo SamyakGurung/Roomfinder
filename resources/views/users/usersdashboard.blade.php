@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>User Dashboard</title>
-    <link rel="stylesheet" href="{{ asset('css/user.css') }}">
     <style>
         body {
             margin: 0;
@@ -108,7 +107,6 @@
             <li><a href="#">👤 Profile</a></li>
             <li><a href="#">📝 Write Review</a></li>
             <li><a href="#">🔑 Change Password</a></li>
-            <li><a href="#">↩️ Forum Replies</a></li>
             <li><a href="#">🔓 Logout</a></li>
         </ul>
     </div>

@@ -1,4 +1,3 @@
-
 @extends('layout.app')
 
  @section('content')
@@ -48,4 +47,3 @@
   </footer>
 
   @endsection
-  

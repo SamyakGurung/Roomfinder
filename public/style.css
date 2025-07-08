@@ -1,13 +1,6 @@
-
 body {
   
   color: #333;
-}
-
-header {
-  background-color: #0057D9;
-  color: white;
-  padding: 15px 20px;
 }
 
 .navbar {
@@ -142,4 +135,3 @@ footer {
   margin: 20 10px;
   text-decoration: none;
 }
-
