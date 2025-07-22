@@ -7,13 +7,16 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9;
+            background-color:white;
+            background: url('https://source.unsplash.com/1600x500/?apartment,city') no-repeat center center/cover;
             color: #333;
         }
         header {
-            color: blue;
-            padding: 20px 0;
+            color: black;
+            padding:20px 0;
             text-align: center;
+            gap: 30 px;
+            background-color: #004080
         }
         .container {
             max-width: 1500px;
@@ -23,111 +26,29 @@
         
         }
         h1, h2 {
-            color:rgb(1, 8, 15);
+            color:rgb(236, 158, 13);
              /* For Laravel public/images/room.jpg */
         
         }
         p {
             line-height: 1.7;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
              /* For Laravel public/images/room.jpg */
         
         }
         .highlight {
-            color:rgb(2, 17, 27);
+            color:rgb(8, 152, 247);
             font-weight: bold;
              /* For Laravel public/images/room.jpg */
         
         }
         footer {
             background-color:black;
-            color: white;
+            color: blue;
             text-align: center;
             padding: 10px 0;
             margin-top: 50px;
         }
     </style>
 
-    <!-- <style>
-      
-        header {
-           
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .room-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .room-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
-
-        .room-card:hover {
-            transform: scale(1.02);
-        }
-
-        .room-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-        }
-
-        .room-details {
-            padding: 15px;
-        }
-
-        .room-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #2c3e50;
-        }
-
-        .room-location {
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .room-price {
-            color: #27ae60;
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .room-description {
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .view-btn {
-            display: inline-block;
-            padding: 8px 16px;
-            background-color: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-
-        .view-btn:hover {
-            background-color: #2980b9;
-        }
-    </style>
-</head> -->
+    

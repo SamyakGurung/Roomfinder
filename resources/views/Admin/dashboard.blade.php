@@ -43,11 +43,11 @@
 <div class="sidebar">
     <h2>Admin</h2>
     <ul>
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Users</a></li>
-        <li><a href="#">Rooms</a></li>
-        <li><a href="#">Messages</a></li>
-        <li><a href="#">Logout</a></li>
+        <li><a href="{{route('dashboard')}}">Dashboard</a></li>
+        <li><a href="{{route('users')}}">Users</a></li>
+        <li><a href="{{route('rooms')}}">Rooms</a></li>
+        <li><a href="{{route('messages')}}">Messages</a></li>
+        <li><a href="{{route('logout')}}">Logout</a></li>
     </ul>
 </div>
 

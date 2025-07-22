@@ -1,6 +1,6 @@
-body {
+ /* body {
   
-  color: #333;
+  color: #7c0606;
 }
 
 .navbar {
@@ -8,10 +8,10 @@ body {
   justify-content: space-between;
   align-items: center;
   padding-right: 50px;
-}
+} 
 
 .logo {
-  font-size: 2.5em;
+  font-size: 1.5em;
   font-weight: bold;
   
 }
@@ -19,17 +19,17 @@ body {
 nav ul {
   list-style: none;
   display: flex;
-  gap: 40px;
+  gap: 30px;
 }
 
 nav ul li a {
-  color: white;
+  color: rgb(242, 16, 16);
   
   text-decoration: none;
 }
 .background {
     background-image: url('../images/roomimages/aesthetic-room-decor.jpg'); /* For Laravel public/images/room.jpg */
-    background-size: cover;
+    /* background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 150vh;
@@ -38,11 +38,11 @@ nav ul li a {
     align-items: center;
     text-align: center;
     color: white;
-}
+} 
 
 .auth-buttons {
   margin-left: 10px;
-  /* border: none; */
+   border: none;
   border-radius: 10px;
   gap: 20px;
   color: white;
@@ -53,9 +53,9 @@ nav ul li a {
 .auth-buttons .signup {
   padding-left: 20px;
   color: white;
-}
+}  */
 
-.hero {
+/* .hero {
   background: url('https://source.unsplash.com/1600x500/?apartment,city') no-repeat center center/cover;
   color: black;
   padding: 200px 20px;
@@ -72,9 +72,9 @@ nav ul li a {
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
-}
+} */
 
-.search-bar input {
+/* .search-bar input {
   padding: 10px;
   width: 200px;
   border-radius: 4px;
@@ -88,9 +88,9 @@ nav ul li a {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
+} */
 
-.features,
+/* .features,
 .how-it-works,
 .testimonial {
   padding: 60px 60px;
@@ -105,9 +105,9 @@ nav ul li a {
   gap: 30px;
   margin-top:1px;
   flex-wrap: wrap;
-}
+} */
 
-.feature,
+/* .feature,
 .step {
   background: white;
   padding: 20px;
@@ -134,4 +134,5 @@ footer {
   color: #ddd;
   margin: 20 10px;
   text-decoration: none;
-}
+} */ 
+  */ */

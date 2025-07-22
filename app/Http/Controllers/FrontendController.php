@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-public function Home(){
-        return view('index');
-    }
+    public function Home()
+{
+    return view('home'); // must have home.blade.php in views
+}
 
     public function About(){
         return view('aboutus');
@@ -26,6 +27,10 @@ public function Home(){
     public function Register(){
 
         return view('register');
+    }
+    public function search(){
+
+        return view('search');
     }
     
 

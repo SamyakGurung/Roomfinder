@@ -101,13 +101,13 @@
     <div class="sidebar">
         <h2>Hello {{ Auth::user()->name ?? 'User' }}</h2>
         <ul>
-            <li><a href="#">🏠 Dashboard</a></li>
-            <li class="active"><a href="#">🏡 POST FOR FREE</a></li>
-            <li><a href="#">❤️ Wishlist</a></li>
-            <li><a href="#">👤 Profile</a></li>
-            <li><a href="#">📝 Write Review</a></li>
-            <li><a href="#">🔑 Change Password</a></li>
-            <li><a href="#">🔓 Logout</a></li>
+            <li><a href="{{route('usersdashboard')}}"> Dashboard</a></li>
+            <li class="active"><a href="{{route('postFor')}}">🏡 POST FOR FREE</a></li>
+            <li><a href="{{route('Wishlist')}}">❤️ Wishlist</a></li>
+            <li><a href="{{route('profile')}}">👤 Profile</a></li>
+            <li><a href="{{route('writereview')}}">📝 Write Review</a></li>
+            <li><a href="{{route('changePw')}}">🔑 Change Password</a></li>
+            <li><a href="{{route('logout')}}">🔓 Logout</a></li>
         </ul>
     </div>
 

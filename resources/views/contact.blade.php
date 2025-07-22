@@ -1,4 +1,3 @@
-@extends('layout.app') <!-- Use your actual layout name -->
 
 @section('content')
 <div class="contact-form-container" style="max-width: 600px; margin: 40px auto;">

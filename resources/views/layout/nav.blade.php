@@ -1,20 +1,20 @@
-<header >
-    <div class="navbar" style="background-color: #63e3e6;">
-      <div class="logo">🏠 </div>
-      
-      <nav>
-        <ul>
-          <li><a href="{{route('index')}}">Home</a></li>
-          <li><a href="{{route('aboutus')}}">About</a></li>
-          <li><a href="{{route('listings')}}">Listings</a></li>
-          <li><a href="{{route('contact')}}">contact</a></li>
-        </ul>
-      </nav>
+@extends('layout.app')
 
-      <div class="auth-buttons">
-        <a href="{{route('login')}}" style="background-color:white;padding:8px;border-radius:20%;">login</a>
-        <a href="{{route('register')}}" target="_blank" style="background-color:white;padding:8px;border-radius:20%;">Sign Up</a>
-       
-      </div>
+ @section('content')
+  <header>
+    <div class="navbar">
+        <div class="logo">🏠 Room Finder</div>
+        <nav>
+            <ul>
+                <li><a href="{{ route('home') }}">Home</a></li>
+                <li><a href="{{ route('aboutus') }}">About</a></li>
+                <li><a href="{{ route('listings') }}">Listings</a></li>
+                <li><a href="{{ route('contact') }}">Contact</a></li>
+                <li><a href="{{ route('login') }}">Login</a></li>
+                <li><a href="{{ route('register') }}">Sign Up</a></li>
+                <li><a href="{{ route('search') }}">search</a></li>
+            </ul>
+        </nav>
     </div>
-  </header>
+</header>
+  @endsection
