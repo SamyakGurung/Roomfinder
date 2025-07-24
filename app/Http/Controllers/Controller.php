@@ -10,3 +10,11 @@ abstract class Controller
     }
 
 }
+class DashboardController extends Controller
+{
+    public function index()
+    {
+        // Here you can later pass dynamic data like total listings
+        return view('dashboard');
+    }
+}
