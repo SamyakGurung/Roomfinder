@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>RoomFinder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
@@ -18,11 +18,11 @@
                 <span>RoomFinder</span>
             </div>
             <div class="space-x-6 text-gray-700 font-medium">
-                <a href="{{route('home')}}" class="hover:text-blue-600">Home</a>
-                <a href="{{route('listings')}}" class="hover:text-blue-600">Listings</a>
-                <a href="{{route('aboutus')}}" class="hover:text-blue-600">About</a>
-                <a href="{{route('contact')}}" class="hover:text-blue-600">Contact</a>
-                <a href="{{route('login')}}" class="hover:text-blue-600">Login</a>
+                <a href="{{ route('home') }}" class="hover:text-blue-600">Home</a>
+                <a href="{{ route('listings') }}" class="hover:text-blue-600">Listings</a>
+                <a href="{{ route('aboutus') }}" class="hover:text-blue-600">About</a>
+                <a href="{{ route('contact') }}" class="hover:text-blue-600">Contact</a>
+                <a href="{{ route('login') }}" class="hover:text-blue-600">Login</a>
             </div>
         </div>
     </nav>
@@ -34,26 +34,35 @@
             <p class="text-lg md:text-xl mb-6">Search for the perfect rental room</p>
 
             <div class="bg-white rounded-lg shadow-md p-4 flex flex-col md:flex-row gap-2 md:gap-4">
-                <select class="border px-4 py-2 rounded w-full md:w-auto">
-                    <option>Location</option>
-                    <option>Kathmandu</option>
-                    <option>Lalitpur</option>
-                    <option>Bhaktapur</option>
+    <!-- <select class="border px-4 py-2 rounded w-full md:w-auto"> -->
+        <select class="border px-4 py-2 rounded w-full md:w-auto text-gray-800">
+
+        <option disabled selected>Location</option>
+        <option>Kathmandu</option>
+        <option>Lalitpur</option>
+        <option>Bhaktapur</option>
+   
                 </select>
-                <select class="border px-4 py-2 rounded w-full md:w-auto">
-                    <option>Price Range</option>
-                    <option>Under Rs. 5000</option>
-                    <option>Rs. 5000 - Rs. 10000</option>
-                    <option>Above Rs. 10000</option>
-                </select>
-                <select class="border px-4 py-2 rounded w-full md:w-auto">
-                    <option>Room Type</option>
-                    <option>Single Room</option>
-                    <option>Double Room</option>
-                     <option>2BKH</option>
-                </select>
-                <button class="bg-blue-600 hover:bg-blue-700 text-black font-semibold px-6 py-2 rounded">Search</button>
-            </div>
+                <!-- <select class="border px-4 py-2 rounded w-full md:w-auto"> -->
+                    <select class="border px-4 py-2 rounded w-full md:w-auto text-gray-800">
+
+        <option disabled selected>Price Range</option>
+        <option>Under Rs. 5000</option>
+        <option>Rs. 5000 - Rs. 10000</option>
+        <option>Above Rs. 10000</option>
+    </select>
+                <!-- <select class="border px-4 py-2 rounded w-full md:w-auto"> -->
+                    <select class="border px-4 py-2 rounded w-full md:w-auto text-gray-800">
+
+        <option disabled selected>Room Type</option>
+        <option>Single Room</option>
+        <option>Double Room</option>
+        <option>2BHK</option>
+    </select>
+
+    <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded">
+        Search
+    </button>
         </div>
     </section>
 
@@ -63,7 +72,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
             <!-- Card 1 -->
-            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <div class="bg-white shadow-md rounded-lg overflow-hidden transform hover:scale-105 transition duration-300">
                 <img src="images/roomimages/kitchen.jpg" alt="Room" class="w-full h-48 object-cover">
                 <div class="p-4">
                     <p class="text-lg font-semibold">Rs. 5000/month</p>
@@ -74,7 +83,7 @@
             </div>
 
             <!-- Card 2 -->
-            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <div class="bg-white shadow-md rounded-lg overflow-hidden transform hover:scale-105 transition duration-300">
                 <img src="images/roomimages/hall.jpg" alt="Room" class="w-full h-48 object-cover">
                 <div class="p-4">
                     <p class="text-lg font-semibold">Rs. 8000/month</p>
@@ -85,7 +94,7 @@
             </div>
 
             <!-- Card 3 -->
-            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <div class="bg-white shadow-md rounded-lg overflow-show transform hover:scale-105 transition duration-300">
                 <img src="images/roomimages/kushal.jpg" alt="Room" class="w-full h-48 object-cover">
                 <div class="p-4">
                     <p class="text-lg font-semibold">Rs. 6000/month</p>
@@ -96,7 +105,7 @@
             </div>
 
             <!-- Card 4 -->
-            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <div class="bg-white shadow-md rounded-lg overflow-show transform hover:scale-105 transition duration-300">
                 <img src="images/roomimages/alex.jpg" alt="Room" class="w-full h-48 object-cover">
                 <div class="p-4">
                     <p class="text-lg font-semibold">Rs. 5500/month</p>
@@ -109,6 +118,18 @@
         </div>
     </section>
 
+    <!-- Footer -->
+    <!-- <footer class="bg-white border-t mt-12">
+        <div class="max-w-7xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
+            &copy; 2025 RoomFinder. All rights reserved.
+        </div>
+    </footer> -->
+    <footer class="bg-black shadow-md mt-14">
+    <div class="max-w-7xl mx-auto px-4 py-6 text-center text-gray-500 text-sm">
+        &copy; 2025 RoomFinder. All rights reserved.
+    </div>
+</footer>
+
+
 </body>
 </html>
-

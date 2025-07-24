@@ -1,18 +1,17 @@
-
 <!-- resources/views/login.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login </title>
+    <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
+    <style>
         body {
             background: #f1f1f1;
             font-family: Arial, sans-serif;
         }
 
-        .login-containerg {
+        .login-container {
             max-width: 400px;
             margin: 80px auto;
             background: white;
@@ -56,12 +55,12 @@
             background-color: #2980b9;
         }
 
-        .login-link {
+        .signup-link {
             text-align: center;
             margin-top: 15px;
         }
 
-        .login-link a {
+        .signup-link a {
             color: #3498db;
             text-decoration: none;
         }
@@ -69,7 +68,7 @@
 </head>
 <body>
     <div class="login-container">
-        <h2>Login to Room Finder</h2>
+        <h2>Login form</h2>
 
         <form action="/login" method="POST">
             @csrf

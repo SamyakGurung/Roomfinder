@@ -1,30 +1,42 @@
-@extends('layouts.app') {{-- Make sure this layout file exists --}}
+@extends('layouts.app')
 
 @section('content')
-<div class="contact-form-container" style="max-width: 600px; margin: 40px auto;">
-    <h2>Contact Us</h2>
-    
-    @if(session('success'))
-        <div style="color: green; margin-bottom: 10px;">
-            {{ session('success') }}
-        </div>
-    @endif
+<div class="flex items-center justify-center min-h-screen bg-gray-50 px-4">
+    <div class="w-full max-w-xl bg-white p-8 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-bold text-center text-blue-600 mb-6">Contact Us</h2>
 
-    <form action="{{ route('contact.submit') }}" method="POST"> {{-- Change to actual route --}}
-        @csrf
-        <div style="margin-bottom: 15px;">
-            <label for="name">Name</label><br>
-            <input type="text" name="name" required style="width:100%; padding:10px;">
-        </div>
-        <div style="margin-bottom: 15px;">
-            <label for="email">Email</label><br>
-            <input type="email" name="email" required style="width:100%; padding:10px;">
-        </div>
-        <div style="margin-bottom: 15px;">
-            <label for="message">Message</label><br>
-            <textarea name="message" rows="5" required style="width:100%; padding:10px;"></textarea>
-        </div>
-        <button type="submit" style="margin-top:10px; padding:10px 20px;">Send</button>
-    </form>
+        @if(session('success'))
+            <div class="mb-4 text-green-600 bg-green-100 border border-green-300 p-4 rounded">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <form action="{{ route('contact.submit') }}" method="POST" class="space-y-5">
+            @csrf
+
+            <div>
+                <label for="name" class="block mb-1 font-medium text-gray-700">Name</label>
+                <input type="text" name="name" id="name" required
+                    class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+
+            <div>
+                <label for="email" class="block mb-1 font-medium text-gray-700">Email</label>
+                <input type="email" name="email" id="email" required
+                    class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+
+            <div>
+                <label for="message" class="block mb-1 font-medium text-gray-700">Message</label>
+                <textarea name="message" id="message" rows="5" required
+                    class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"></textarea>
+            </div>
+
+            <button type="submit"
+                class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-md transition duration-200">
+                Send Message
+            </button>
+        </form>
+    </div>
 </div>
 @endsection

@@ -5,6 +5,8 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\DashboardController;
+
 
 // Homepage
 Route::get('/', [FrontendController::class, 'index'])->name('home');
@@ -31,6 +33,16 @@ Route::middleware('auth')->group(function () {
 Route::post('/update-password', [UserController::class, 'updatePassword'])->name('password.update');
 
 Route::get('/rooms/{id}', [FrontendController::class, 'viewRoom'])->name('rooms.show');
+
+
+Route::get('/admin', function () {
+    return view('admin-dashboard');
+});
+
+
+
+
+
 
 
 
