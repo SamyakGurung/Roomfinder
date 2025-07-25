@@ -1,20 +1,14 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>RoomFinder</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Room Finder Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-900">
-    <div class="container mx-auto p-4">
+<body class="bg-gray-100">
+    <div class="min-h-screen">
         @yield('content')
     </div>
-</body>
-</html>
-
-
-    
-
-
 </body>
 </html>

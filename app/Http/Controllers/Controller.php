@@ -17,4 +17,8 @@ class DashboardController extends Controller
         // Here you can later pass dynamic data like total listings
         return view('dashboard');
     }
+
+
 }
+
+

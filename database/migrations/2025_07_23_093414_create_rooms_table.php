@@ -12,10 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+        $table->id();
+        $table->string('title');
+        $table->string('location');
+        $table->decimal('price', 10, 2);
+        $table->string('type');
+        $table->text('description')->nullable();
+        $table->string('image')->nullable();
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.
@@ -24,4 +30,9 @@ return new class extends Migration
     {
         Schema::dropIfExists('rooms');
     }
+
 };
+
+
+
+

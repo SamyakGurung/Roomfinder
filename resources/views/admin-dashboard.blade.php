@@ -4,18 +4,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
+    <title>Room Finder Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100">
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Room Finder Admin Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex h-screen bg-gray-100">
 
@@ -23,12 +14,18 @@
   <aside class="w-64 bg-white shadow-md">
     <div class="p-6 font-bold text-xl text-blue-600">Admin Panel</div>
     <nav class="mt-4 space-y-2">
-      <a href="#" class="block px-6 py-2 hover:bg-blue-50 text-gray-700">Dashboard</a>
-      <a href="#" class="block px-6 py-2 hover:bg-blue-50 text-gray-700">Room Listings</a>
-      <a href="#" class="block px-6 py-2 hover:bg-blue-50 text-gray-700">Add Room</a>
-      <a href="#" class="block px-6 py-2 hover:bg-blue-50 text-gray-700">Users</a>
-      <a href="#" class="block px-6 py-2 hover:bg-blue-50 text-gray-700">Messages</a>
-      <a href="#" class="block px-6 py-2 hover:bg-blue-50 text-gray-700">Settings</a>
+      <a href="{{ route('dashboard') }}" class="block px-6 py-2 hover:bg-blue-50 text-gray-700">Dashboard</a>
+      <a href="{{ route('rooms.index') }}" class="block px-6 py-2 hover:bg-blue-50 text-gray-700">Room Listings</a>
+      <a href="{{ route('rooms.create') }}" class="block px-6 py-2 hover:bg-blue-50 text-gray-700">Add Room</a>
+
+      @if(Auth::check())
+          <a href="{{ route('user.show', Auth::user()->id) }}" class="block px-6 py-2 hover:bg-blue-50 text-gray-700">Users</a>
+      @else
+          <a href="{{ route('login') }}" class="block px-6 py-2 hover:bg-blue-50 text-gray-700">Login</a>
+      @endif
+
+      <a href="{{ route('messages') }}" class="block px-6 py-2 hover:bg-blue-50 text-gray-700">Messages</a>
+      <a href="{{ route('settings') }}" class="block px-6 py-2 hover:bg-blue-50 text-gray-700">Settings</a>
     </nav>
   </aside>
 
@@ -36,7 +33,10 @@
   <div class="flex-1 p-6 overflow-auto">
     <header class="flex justify-between items-center mb-6">
       <h1 class="text-2xl font-semibold text-gray-800">Dashboard Overview</h1>
-      <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Logout</button>
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Logout</button>
+      </form>
     </header>
 
     <!-- Stats -->
@@ -62,19 +62,20 @@
     <!-- Add Room Form -->
     <div class="bg-white p-6 rounded shadow mb-6">
       <h2 class="text-xl font-semibold mb-4">Add New Room</h2>
-      <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input type="text" placeholder="Room Title" class="border p-2 rounded">
-        <input type="text" placeholder="Location" class="border p-2 rounded">
-        <input type="text" placeholder="Price" class="border p-2 rounded">
-        <select class="border p-2 rounded">
+      <form method="POST" action="#" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        @csrf
+        <input type="text" name="title" placeholder="Room Title" class="border p-2 rounded">
+        <input type="text" name="location" placeholder="Location" class="border p-2 rounded">
+        <input type="text" name="price" placeholder="Price" class="border p-2 rounded">
+        <select name="type" class="border p-2 rounded">
           <option>Select Type</option>
           <option>Single</option>
           <option>Double</option>
           <option>2BHK</option>
         </select>
-        <input type="file" class="border p-2 rounded col-span-2">
-        <textarea placeholder="Description" rows="4" class="border p-2 rounded col-span-2"></textarea>
-        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 col-span-2">Add Room</button>
+        <input type="file" name="image" class="border p-2 rounded col-span-2">
+        <textarea name="description" placeholder="Description" rows="4" class="border p-2 rounded col-span-2"></textarea>
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 col-span-2">Add Room</button>
       </form>
     </div>
 
@@ -111,11 +112,6 @@
       &copy; 2025 Room Finder Admin. All rights reserved.
     </footer>
   </div>
-
-</body>
-</html>
-
-    
 
 </body>
 </html>
