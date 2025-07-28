@@ -35,6 +35,11 @@ class FrontendController extends Controller
         return view('register'); // resources/views/register.blade.php
     }
 
+       public function ViewDetails()
+    {
+        return view('ViewDetails'); // resources/views/register.blade.php
+    }
+
     public function search()
     {
         return view('search'); // resources/views/search.blade.php

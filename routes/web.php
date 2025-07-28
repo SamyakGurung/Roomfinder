@@ -10,6 +10,9 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\PaymentController;
 
 // Guest-only routes
 Route::middleware('guest')->group(function () {
@@ -45,18 +48,38 @@ Route::middleware('auth')->group(function () {
     })->middleware(['throttle:6,1'])->name('verification.send');
 });
 
-// Public Routes
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// ✅ PUBLIC ROUTES
 
+// Home page — make sure this view exists in resources/views/home.blade.php
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Listings page
 Route::get('/listings', [ListingController::class, 'index'])->name('listings');
 
+Route::get('/ViewDetails', [FrontendController::class, 'ViewDetails'])->name('ViewDetails');
+// About Us page
 Route::get('/aboutus', function () {
     return view('aboutus');
 })->name('aboutus');
 
+// Contact form
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
+// Search rooms
 Route::get('/rooms/search', [RoomController::class, 'search'])->name('rooms.search');
+
+// Room details
+Route::get('/room/{id}', [RoomController::class, 'show'])->name('room.details');
+Route::get('/payment', [RoomController::class, 'payment'])->name('payment');
+
+// Contact room owner
+Route::get('/contact-owner/{room}', [ContactController::class, 'showForm'])->name('contact.owner');
+Route::post('/contact-owner/{room}', [ContactController::class, 'submitForm'])->name('contact.send');
+
+
+Route::controller(PaymentController::class)->group(function () {
+    Route::post('/initiate-payment', 'initiatePayment');
+    Route::get('/verify-payment', 'verifyPayment');
+});
+Route::post('/api/verify-payment', [PaymentController::class, 'verifyPayment']);

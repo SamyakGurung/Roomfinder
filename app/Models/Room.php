@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    // Optional: protected $table = 'rooms';
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
+
+
 }

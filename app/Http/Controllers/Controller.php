@@ -2,23 +2,12 @@
 
 namespace App\Http\Controllers;
 
-abstract class Controller
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
+
+class Controller extends BaseController
 {
-    public function show(){
-
-        return view('contact');
-    }
-
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
-class DashboardController extends Controller
-{
-    public function index()
-    {
-        // Here you can later pass dynamic data like total listings
-        return view('dashboard');
-    }
-
-
-}
-
-

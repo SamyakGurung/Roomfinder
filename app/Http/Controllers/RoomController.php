@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\RoomController;
 
 use App\Models\Room;
 use Illuminate\Http\Request;
@@ -34,6 +35,7 @@ class RoomController extends Controller
 
         return redirect()->route('rooms.show', $room)->with('success', 'Room updated successfully');
     }
+    
 
 
 
@@ -60,6 +62,25 @@ class RoomController extends Controller
 
         return view('admin.rooms.index', compact('rooms'));
     }
+
+
+
+public function show($id)
+    {
+        $room = Room::with('user')->findOrFail($id);
+        return view('view-details', compact('room'));
+    }
+
+    
+public function payment()
+    {
+        return view('payment');
+    }
+
+
+
 }
+
+
 
 

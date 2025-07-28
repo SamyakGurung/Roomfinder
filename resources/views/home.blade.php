@@ -5,6 +5,7 @@
     <title>RoomFinder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+   <link rel="icon" href="{{ asset('images/roomimages/logoo.png') }}" type="image/jpeg" />
 </head>
 <body class="bg-gray-100">
 
@@ -21,6 +22,15 @@
                 <a href="{{ route('aboutus') }}" class="hover:text-blue-600">About</a>
                 <a href="{{ route('contact') }}" class="hover:text-blue-600">Contact</a>
                 <a href="{{ route('login') }}" class="hover:text-blue-600">Login</a>
+              @foreach($rooms as $room)
+    <a href="{{ route('View-Details', ['id' => $room->id]) }}">
+        View Details of {{ $room->title }}
+    </a>
+@endforeach
+
+
+
+
                 <!-- <a href="{{ route('contact.submit') }}" class="hover:text-blue-600">contact.submit</a>
                  -->
                 
@@ -103,6 +113,7 @@
                     <p class="text-lg font-semibold">Rs. 6000/month</p>
                     <p class="text-sm text-gray-600">Kathmandu</p>
                     <p class="text-sm text-gray-600 mb-2">Single Room</p>
+                    <a href="/ViewDetails">
                     <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">View Details</button>
                 </div>
             </div>
@@ -114,7 +125,9 @@
                     <p class="text-lg font-semibold">Rs. 5500/month</p>
                     <p class="text-sm text-gray-600">Kathmandu</p>
                     <p class="text-sm text-gray-600 mb-2">Single Room</p>
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">View Details</button>
+                    <a href="/ViewDetails">
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">View Details</button>
+                    </a>
                 </div>
             </div>
 
