@@ -1,91 +1,33 @@
-<!-- resources/views/login.blade.php -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            background: #f1f1f1;
-            font-family: Arial, sans-serif;
-        }
+@extends('layouts.app')
 
-        .login-container {
-            max-width: 400px;
-            margin: 80px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
+@section('content')
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
 
-        h2 {
-            text-align: center;
-            color: #2c3e50;
-        }
+        @if ($errors->any())
+            <div class="text-red-500 mb-4">{{ $errors->first() }}</div>
+        @endif
 
-        label {
-            display: block;
-            margin: 15px 0 5px;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 20px;
-            border: none;
-            background-color: #3498db;
-            color: white;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
-
-        .signup-link {
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .signup-link a {
-            color: #3498db;
-            text-decoration: none;
-        }
-    </style>
-</head>
-<body>
-    <div class="login-container">
-        <h2>Login form</h2>
-
-        <form action="/login" method="POST">
+        <form method="POST" action="{{ route('login') }}">
             @csrf
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            <div class="mb-4">
+                <label for="email" class="block text-sm">Email</label>
+                <input type="email" name="email" class="w-full border p-2 rounded-lg" required>
             </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required placeholder="Enter your password">
+            <div class="mb-4">
+                <label for="password" class="block text-sm">Password</label>
+                <input type="password" name="password" class="w-full border p-2 rounded-lg" required>
             </div>
-
-            <button type="submit" class="btn">Login</button>
-
-            <p class="signup-link">Don't have an account? <a href="/register">Register here</a></p>
+            <button class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700">Login</button>
         </form>
+
+        <div class="text-sm text-center mt-4">
+            <a href="{{ route('password.request') }}" class="text-blue-600 hover:underline">Forgot your password?</a>
+        </div>
+        <div class="text-sm text-center mt-2">
+            <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Don't have an account? Register</a>
+        </div>
     </div>
-</body>
-</html>
+</div>
+@endsection

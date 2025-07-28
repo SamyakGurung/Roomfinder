@@ -1,28 +1,42 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-3xl mx-auto bg-white p-6 rounded shadow mt-8">
-    <h2 class="text-xl font-semibold mb-4">Edit Room</h2>
+<div class="container mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-6">Edit Room</h1>
 
-    <form method="POST" action="{{ route('rooms.update', $room->id) }}" enctype="multipart/form-data" class="space-y-4">
+    @if ($errors->any())
+        <div class="mb-4 text-red-600">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>- {{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('rooms.update', $room) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
-        <input type="text" name="title" value="{{ $room->title }}" placeholder="Room Title" class="w-full border p-2 rounded">
-        <input type="text" name="location" value="{{ $room->location }}" placeholder="Location" class="w-full border p-2 rounded">
-        <input type="text" name="price" value="{{ $room->price }}" placeholder="Price" class="w-full border p-2 rounded">
+        <label class="block mb-2">Title</label>
+        <input type="text" name="title" value="{{ old('title', $room->title) }}" class="border p-2 w-full mb-4">
 
-        <select name="type" class="w-full border p-2 rounded">
-            <option value="Single" {{ $room->type == 'Single' ? 'selected' : '' }}>Single</option>
-            <option value="Double" {{ $room->type == 'Double' ? 'selected' : '' }}>Double</option>
-            <option value="2BHK" {{ $room->type == '2BHK' ? 'selected' : '' }}>2BHK</option>
-        </select>
+        <label class="block mb-2">Location</label>
+        <input type="text" name="location" value="{{ old('location', $room->location) }}" class="border p-2 w-full mb-4">
 
-        <textarea name="description" class="w-full border p-2 rounded" rows="4">{{ $room->description }}</textarea>
+        <label class="block mb-2">Price</label>
+        <input type="number" name="price" value="{{ old('price', $room->price) }}" class="border p-2 w-full mb-4">
 
-        <input type="file" name="image" class="w-full border p-2 rounded">
+        <label class="block mb-2">Type</label>
+        <input type="text" name="type" value="{{ old('type', $room->type) }}" class="border p-2 w-full mb-4">
 
-        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Update Room</button>
+        <label class="block mb-2">Description</label>
+        <textarea name="description" class="border p-2 w-full mb-4">{{ old('description', $room->description) }}</textarea>
+
+        <label class="block mb-2">Image</label>
+        <input type="file" name="image" class="mb-4">
+
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Update Room</button>
     </form>
 </div>
 @endsection

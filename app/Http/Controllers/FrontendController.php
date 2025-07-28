@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Room;
+
+
 
 class FrontendController extends Controller
 {
@@ -49,4 +52,50 @@ class FrontendController extends Controller
         $room = Room::findOrFail($id); // Find the room or fail with 404
         return view('room', compact('room')); // resources/views/room.blade.php
     }
+
+
+public function listings()
+{
+    $rooms = Room::latest()->get();  // Get all rooms ordered by newest first
+    return view('frontend.listings', compact('rooms'));  // Pass data to view
 }
+public function loginSubmit(Request $request)
+{
+$credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ]);
+
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        return redirect()->intended('/dashboard'); // or your desired page
+    }
+
+    return back()->withErrors([
+        'email' => 'Invalid email or password.',
+    ]);
+}
+
+
+
+
+//     $credentials = $request->validate([
+//         'email' => ['required', 'email'],
+//         'password' => ['required'],
+//     ]);
+
+//     if (Auth::attempt($credentials)) {
+//         $request->session()->regenerate();
+//         return redirect()->intended('/dashboard');
+//     }
+
+//     return back()->withErrors([
+//         'email' => 'Invalid credentials.',
+//     ]);
+// }
+
+}
+
+
+
+

@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace App\Http\Controllers;
 
@@ -7,18 +7,14 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    public function index()
+    // Show edit form
+    public function edit(Room $room)
     {
-        $rooms = Room::latest()->get();
-        return view('rooms.index', compact('rooms'));
+        return view('rooms.edit', compact('room'));
     }
 
-    public function create()
-    {
-        return view('rooms.create');
-    }
-
-    public function store(Request $request)
+    // Handle update form submission
+    public function update(Request $request, Room $room)
     {
         $validated = $request->validate([
             'title' => 'required',
@@ -30,13 +26,40 @@ class RoomController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('rooms', 'public');
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validated['image'] = $imagePath;
         }
 
-        Room::create($validated);
+        $room->update($validated);
 
-        return redirect()->route('rooms.index')->with('success', 'Room added successfully!');
+        return redirect()->route('rooms.show', $room)->with('success', 'Room updated successfully');
     }
 
-    // Optional: show, edit, update, destroy functions can be added later
+
+
+    
+
+
+    public function search(Request $request)
+    {
+        $query = Room::query();
+
+        if ($request->filled('location')) {
+            $query->where('location', 'like', '%' . $request->location . '%');
+        }
+
+        if ($request->filled('price')) {
+            $query->where('price', '<=', $request->price);
+        }
+
+        if ($request->filled('type')) {
+            $query->where('type', $request->type);
+        }
+
+        $rooms = $query->get();
+
+        return view('admin.rooms.index', compact('rooms'));
+    }
 }
+
+

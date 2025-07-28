@@ -21,44 +21,53 @@
                 <a href="{{ route('aboutus') }}" class="hover:text-blue-600">About</a>
                 <a href="{{ route('contact') }}" class="hover:text-blue-600">Contact</a>
                 <a href="{{ route('login') }}" class="hover:text-blue-600">Login</a>
+                <!-- <a href="{{ route('contact.submit') }}" class="hover:text-blue-600">contact.submit</a>
+                 -->
+                
+
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative bg-cover bg-center h-[400px]" style="background-image: url('images/roomimages/kathmandu-valley.jpg');">
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white text-center px-4">
-            <h1 class="text-4xl md:text-5xl font-bold mb-2">FIND YOUR ROOM</h1>
-            <p class="text-lg md:text-xl mb-6">Search for the perfect rental room</p>
+    <!-- Hero Section -->
+<section class="relative bg-cover bg-center h-[400px]" style="background-image: url('images/roomimages/kathmandu-valley.jpg');">
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white text-center px-4">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">FIND YOUR ROOM</h1>
+        <p class="text-lg md:text-xl mb-6">Search for the perfect rental room</p>
 
-            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col md:flex-row gap-2 md:gap-4">
-                <select class="border px-4 py-2 rounded w-full md:w-auto text-gray-800">
-                    <option disabled selected>Location</option>
-                    <option>Kathmandu</option>
-                    <option>Lalitpur</option>
-                    <option>Bhaktapur</option>
-                </select>
+        <!-- ✅ START of Search Form -->
+        <form action="{{ route('rooms.search') }}" method="GET" class="bg-white rounded-lg shadow-md p-4 flex flex-col md:flex-row gap-2 md:gap-4">
 
-                <select class="border px-4 py-2 rounded w-full md:w-auto text-gray-800">
-                    <option disabled selected>Price Range</option>
-                    <option>Under Rs. 5000</option>
-                    <option>Rs. 5000 - Rs. 10000</option>
-                    <option>Above Rs. 10000</option>
-                </select>
+            <select name="location" class="border px-4 py-2 rounded w-full md:w-auto text-gray-800">
+                <option value="">Location</option>
+                <option value="Kathmandu">Kathmandu</option>
+                <option value="Lalitpur">Lalitpur</option>
+                <option value="Bhaktapur">Bhaktapur</option>
+            </select>
 
-                <select class="border px-4 py-2 rounded w-full md:w-auto text-gray-800">
-                    <option disabled selected>Room Type</option>
-                    <option>Single Room</option>
-                    <option>Double Room</option>
-                    <option>2BHK</option>
-                </select>
+            <select name="price" class="border px-4 py-2 rounded w-full md:w-auto text-gray-800">
+                <option value="">Price Range</option>
+                <option value="5000">Under Rs. 5000</option>
+                <option value="10000">Rs. 5000 - Rs. 10000</option>
+                <option value="10001">Above Rs. 10000</option>
+            </select>
 
-                <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded">
-                    Search
-                </button>
-            </div>
-        </div>
-    </section>
+            <select name="type" class="border px-4 py-2 rounded w-full md:w-auto text-gray-800">
+                <option value="">Room Type</option>
+                <option value="Single Room">Single Room</option>
+                <option value="Double Room">Double Room</option>
+                <option value="2BHK">2BHK</option>
+            </select>
+
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded">
+                Search
+            </button>
+
+        </form>
+        <!-- ✅ END of Search Form -->
+    </div>
+</section>
 
     <!-- Listings -->
     <section class="max-w-7xl mx-auto px-4 py-12">

@@ -1,137 +1,62 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\ListingController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\RoomController;
-use App\Http\Controllers\MessageController;
-use App\Http\Controllers\SettingsController;
-use Illuminate\Support\Facades\Auth;
 
+// Guest-only routes
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
 
+    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/register', [RegisterController::class, 'register']);
 
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 
+    Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+});
 
-
-
-// Homepage
-Route::get('/', [FrontendController::class, 'index'])->name('home');
-
-// Static frontend views via controller
-Route::get('/about', [FrontendController::class, 'about'])->name('aboutus');
-Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
-Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
-Route::get('/listings', [FrontendController::class, 'listing'])->name('listings');
-Route::get('/login', [FrontendController::class, 'login'])->name('login');
-Route::get('/register', [FrontendController::class, 'register'])->name('register');
-
-// Search and room details
-Route::get('/search', [FrontendController::class, 'search'])->name('search');
-Route::get('/rooms/{id}', [FrontendController::class, 'show'])->name('rooms.show');
-
-// Authenticated review routes
+// Authenticated-only routes
 Route::middleware('auth')->group(function () {
-    Route::get('/review/create', [ReviewController::class, 'create'])->name('review.create');
-    Route::post('/review/store', [ReviewController::class, 'store'])->name('review.store');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::get('/email/verify', function () {
+        return view('auth.verify-email');
+    })->name('verification.notice');
+
+    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        $request->fulfill();
+        return redirect('/');
+    })->middleware(['signed'])->name('verification.verify');
+
+    Route::post('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+        return back()->with('message', 'Verification link sent!');
+    })->middleware(['throttle:6,1'])->name('verification.send');
 });
 
-// Password update route
-Route::post('/update-password', [UserController::class, 'updatePassword'])->name('password.update');
+// Public Routes
+Route::get('/', function () {
+    return view('home');
+})->name('home');
 
-Route::get('/rooms/{id}', [FrontendController::class, 'viewRoom'])->name('rooms.show');
+Route::get('/listings', [ListingController::class, 'index'])->name('listings');
 
+Route::get('/aboutus', function () {
+    return view('aboutus');
+})->name('aboutus');
 
-Route::get('/admin', function () {
-    return view('admin-dashboard');
-});
+Route::get('/contact', [ContactController::class, 'show'])->name('contact');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
-
-// Example dashboard route
-Route::get('/dashboard', function () {
-    return view('admin-dashboard'); // or whatever view you want
-})->name('dashboard');
-
-
-Route::get('/rooms', [RoomController::class, 'index'])->name('rooms.index');
-Route::get('/rooms/create', [RoomController::class, 'create'])->name('rooms.create');
-
-Route::get('/messages', [MessageController::class, 'index'])->name('messages');
-Route::get('/settings', [SettingsController::class, 'index'])->name('Settings');
-
-
-
-
-
-
-
-
-   
-
-
-Route::get('/users/{id}', [UserController::class, 'show'])->name('user.show');
-
-
-Route::get('/users/{id}', [UserController::class, 'showUser'])->name('user.show');
-
-Route::get('/users', [UserController::class, 'index'])->name('Users');
-Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
-Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
-Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
-
-
-
-Route::get('/users', [UserController::class, 'index'])->name('Users');
-Route::get('/users/{id}', [UserController::class, 'showUser'])->name('users.show');
-
-
-
-Route::get('/dashboard', function () {
-    $user = Auth::user(); // 
-    return view('admin-dashboard', compact('user'));
-})->middleware('auth');  // 
-
-
-
-Route::get('/dashboard', function () {
-    $user = Auth::user();
-    return view('admin-dashboard', compact('user'));
-})->name('dashboard')->middleware('auth');
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin-dashboard');
-    })->name('admin.dashboard');
-});
-
-
-
-Route::middleware(['auth'])->group(function () {
-    Route::resource('rooms', RoomController::class);
-    Route::get('/admin', fn() => view('admin-dashboard'))->name('dashboard');
-});
-
-Route::resource('rooms', RoomController::class);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Route::get('/rooms/search', [RoomController::class, 'search'])->name('rooms.search');
