@@ -1,86 +1,78 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\RoomController;
 
 use App\Models\Room;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    // Show edit form
-    public function edit(Room $room)
+    // Show all rooms
+    public function index()
     {
-        return view('rooms.edit', compact('room'));
+        $rooms = Room::all();
+        return view('rooms.index', compact('rooms'));
     }
 
-    // Handle update form submission
-    public function update(Request $request, Room $room)
-    {
-        $validated = $request->validate([
-            'title' => 'required',
-            'location' => 'required',
-            'price' => 'required|numeric',
-            'type' => 'required',
-            'description' => 'nullable',
-            'image' => 'nullable|image|max:2048',
-        ]);
-
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $validated['image'] = $imagePath;
-        }
-
-        $room->update($validated);
-
-        return redirect()->route('rooms.show', $room)->with('success', 'Room updated successfully');
-    }
-    
-
-
-
-    
-
-
+    // Search/filter rooms
     public function search(Request $request)
     {
+        $location = $request->input('location');
+        $price = $request->input('price');
+        $type = $request->input('type');
+
         $query = Room::query();
+        
 
-        if ($request->filled('location')) {
-            $query->where('location', 'like', '%' . $request->location . '%');
+        if (!empty($location)) {
+            $query->where('location', 'LIKE', '%' . $location . '%');
         }
 
-        if ($request->filled('price')) {
-            $query->where('price', '<=', $request->price);
+        if (!empty($type)) {
+            $query->where('type', 'LIKE', '%' . $type . '%');
         }
 
-        if ($request->filled('type')) {
-            $query->where('type', $request->type);
+        if ($price == '5000') {
+            $query->where('price', '<=', 5000);
+        } elseif ($price == '10000') {
+            $query->whereBetween('price', [5000, 10000]);
+        } elseif ($price == '10001') {
+            $query->where('price', '>', 10000);
         }
 
         $rooms = $query->get();
 
-        return view('admin.rooms.index', compact('rooms'));
+        // ✅ Return the correct Blade view
+        return view('rooms.search', compact('rooms'));
     }
 
-
-
-public function show($id)
+    // Show a single room
+    public function show($id)
     {
-        $room = Room::with('user')->findOrFail($id);
-        return view('view-details', compact('room'));
+        $room = Room::findOrFail($id);
+        return view('rooms.show', compact('room'));
     }
 
-    
-public function payment()
+    // Admin edit form
+    public function edit($id)
     {
-        return view('payment');
+        $room = Room::findOrFail($id);
+        return view('admin.rooms.edit', compact('room'));
     }
 
+    // Admin update room
+    public function update(Request $request, $id)
+    {
+        $room = Room::findOrFail($id);
+        $room->update($request->only(['title', 'description', 'location', 'type', 'price']));
+        return redirect()->route('admin.rooms.index')->with('success', 'Room updated successfully!');
+    }
 
-
+    // Admin delete room
+    public function destroy($id)
+    {
+        $room = Room::findOrFail($id);
+        $room->delete();
+        return redirect()->route('admin.rooms.index')->with('success', 'Room deleted successfully!');
+    }
 }
-
-
-
-

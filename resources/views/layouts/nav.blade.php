@@ -3,9 +3,10 @@
  @section('content')
   <header>
     <div class="navbar">
-        <div class="logo">🏠 Room Finder</div>
+        <div class="logo"> Room Finder</div>
         <nav>
             <ul>
+                <li><a href="{{ route('nav') }}">nav</a></li>
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('aboutus') }}">About</a></li>
                 <li><a href="{{ route('listings') }}">Listings</a></li>

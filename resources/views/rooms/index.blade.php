@@ -1,56 +1,47 @@
-{{-- resources/views/rooms/index.blade.php --}}
 @extends('layouts.app')
 
 @section('content')
-<div class="p-6">
-    <div class="flex justify-between items-center mb-4">
-        <h1 class="text-2xl font-bold">Room Listings</h1>
-        <a href="{{ route('rooms.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Add Room</a>
+<x-navbar />
+<div class="min-h-screen bg-gray-100 py-10">
+    <div class="max-w-6xl mx-auto px-4">
+        <h1 class="text-3xl font-bold mb-8 text-center">Search Results</h1>
+
+        @if($rooms->isEmpty())
+            <div class="text-center text-gray-600">
+                <p>No rooms found.</p>
+            </div>
+        @else
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($rooms as $room)
+                    <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition duration-300">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ $room->title }}</h2>
+                        <p class="text-gray-700"><strong>Location:</strong> {{ $room->location }}</p>
+                        <p class="text-gray-700"><strong>Price:</strong> Rs. {{ number_format($room->price, 2) }}</p>
+                        <p class="text-gray-700"><strong>Type:</strong> {{ $room->type }}</p>
+                        <p class="text-gray-600 mt-2">{{ \Illuminate\Support\Str::limit($room->description, 100) }}</p>
+
+                        <div class="mt-4 flex justify-between items-center">
+                            <a href="{{ route('bookings.create', $room->id) }}"
+                               class="text-green-600 hover:underline font-medium">
+                                Book this room
+                            </a>
+
+                            <a href="{{ route('rooms.show', $room->id) }}"
+                               class="text-blue-600 hover:underline font-medium">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
     </div>
-
-    @if(session('success'))
-        <div class="bg-green-100 text-green-800 p-3 rounded mb-4">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <table class="w-full table-auto bg-white rounded shadow">
-        <thead class="bg-gray-200 text-left">
-            <tr>
-                <th class="p-3">Title</th>
-                <th class="p-3">Location</th>
-                <th class="p-3">Price</th>
-                <th class="p-3">Type</th>
-                <th class="p-3">Image</th>
-                <th class="p-3">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($rooms as $room)
-                <tr class="border-b hover:bg-gray-50">
-                    <td class="p-3">{{ $room->title }}</td>
-                    <td class="p-3">{{ $room->location }}</td>
-                    <td class="p-3">Rs. {{ $room->price }}</td>
-                    <td class="p-3">{{ $room->type }}</td>
-                    <td class="p-3">
-                        @if($room->image)
-                            <img src="{{ asset('storage/' . $room->image) }}" alt="Room Image" class="w-16 h-16 object-cover rounded">
-                        @else
-                            N/A
-                        @endif
-                    </td>
-                    <td class="p-3 space-x-2">
-                        <a href="#" class="text-blue-600 hover:underline">Edit</a>
-                        <a href="#" class="text-red-600 hover:underline">Delete</a>
-                    </td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="6" class="p-4 text-center text-gray-500">No rooms found.</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
 </div>
-@endsection
+ <footer class="bg-gradient-to-r from-blue-900 to-blue-800 shadow-inner py-6 mt-12">
+    <div class="max-w-7xl mx-auto px-4 text-center text-blue-200 text-sm font-medium select-none">
+        &copy; 2025 RoomFinder. All rights reserved.
+    </div>
+</footer>
 
+
+@endsection

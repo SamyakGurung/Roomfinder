@@ -9,19 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('rooms', function (Blueprint $table) {
+    
+        public function up()
+{
+    Schema::create('rooms', function (Blueprint $table) {
         $table->id();
         $table->string('title');
         $table->string('location');
-        $table->decimal('price', 10, 2);
-        $table->string('type');
         $table->text('description')->nullable();
-        $table->string('image')->nullable();
+        $table->integer('price');
+        $table->boolean('is_verified')->default(false);
         $table->timestamps();
     });
 }
+
 
     /**
      * Reverse the migrations.
@@ -30,9 +31,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('rooms');
     }
-
 };
-
-
-
-

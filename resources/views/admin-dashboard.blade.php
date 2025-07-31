@@ -10,7 +10,6 @@
 </head>
 <body class="flex h-screen bg-gray-100">
 
-  <!-- Sidebar -->
   <aside class="w-64 bg-white shadow-md">
     <div class="p-6 font-bold text-xl text-blue-600">Admin Panel</div>
     <nav class="mt-4 space-y-2">
@@ -29,7 +28,7 @@
     </nav>
   </aside>
 
-  <!-- Main Content -->
+  
   <div class="flex-1 p-6 overflow-auto">
     <header class="flex justify-between items-center mb-6">
       <h1 class="text-2xl font-semibold text-gray-800">Dashboard Overview</h1>
@@ -39,7 +38,7 @@
       </form>
     </header>
 
-    <!-- Stats -->
+   
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
       <div class="bg-white p-4 rounded shadow">
         <h2 class="text-lg font-semibold">Total Rooms</h2>
@@ -59,7 +58,7 @@
       </div>
     </div>
 
-    <!-- Add Room Form -->
+    
     <div class="bg-white p-6 rounded shadow mb-6">
       <h2 class="text-xl font-semibold mb-4">Add New Room</h2>
       <form method="POST" action="#" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -79,7 +78,7 @@
       </form>
     </div>
 
-    <!-- Room Listings Table -->
+    
     <div class="bg-white p-6 rounded shadow">
       <h2 class="text-xl font-semibold mb-4">Room Listings</h2>
       <table class="w-full table-auto text-sm">
@@ -107,7 +106,7 @@
       </table>
     </div>
 
-    <!-- Footer -->
+    
     <footer class="mt-10 text-center text-sm text-gray-500">
       &copy; 2025 Room Finder Admin. All rights reserved.
     </footer>

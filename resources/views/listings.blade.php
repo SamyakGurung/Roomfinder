@@ -1,4 +1,4 @@
-<!-- resources/views/frontend/listings.blade.php -->
+
 
 <!DOCTYPE html>
 <html>

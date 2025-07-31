@@ -11,11 +11,24 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
-    public function run(): void
-    {
-        $this->call(RoomSeeder::class);
+    public function run()
+{
+    $this->call([
+        RoomSeeder::class,
+        UserSeeder::class,
+    ]);
 
-        // User::factory(10)->create();
+
+User::create([
+    'name' => 'Admin',
+    'email' => 'admin@example.com',
+    'password' => bcrypt('password'), // change this!
+    'role' => 'admin',
+]);
+
+
+
+
 
         User::factory()->create([
             'name' => 'Test User',
@@ -23,3 +36,9 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 }
+
+
+
+    
+
+

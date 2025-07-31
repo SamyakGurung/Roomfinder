@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<x-navbar />
 <div class="container mx-auto p-6">
     <h1 class="text-2xl font-bold mb-6">Edit Room</h1>
 
